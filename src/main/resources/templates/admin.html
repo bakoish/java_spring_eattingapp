@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel admina</title>
+    <link th:href = "@{/css/home.css}" rel="stylesheet">
+    <!-- include jquery -->
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            $('#navbar').load("navbar");
+        });
+    </script>
+</head>
+
+<body class="body-common ">
+
+<!-- Navbar will be loaded here -->
+<div id="navbar"></div>
+
+<!-- Panel -->
+<div class="flex-center">
+
+    <!-- Dodawanie dania -->
+    <div class="w3-padding-large" id="admin-dish">
+    <h1>Dodaj danie</h1>
+    <form action="#" th:action="@{dishes}" th:object="${dishes}" method="post" id="admin-dish-add">
+        <p>Name: <input type="text" th:field="*{Name}" /></p>
+        <p>Price: <input type="text" th:field="*{Price}" /></p>
+        <!--
+        <p>Description: <input type="text" th:field="*{Description}" /></p>
+        -->
+        <p>Description: <textarea type="text" th:field="*{Description}"></textarea></p>
+        <p class="error" th:errors="*{Price}"></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+
+</div>
+
+<!-- Lista dań -->
+<div class="w3-padding-large" id="admin-menu">
+    <h1>Our Menu:</h1><br>
+    <div th:each="dish : ${dishes1}">
+        <h4><span th:text="${dish.getName()}">No item</span>
+
+        <div id="admin-menu-buttons">
+            <form action="#" th:action="@{dish/edit}" th:object="${dish2}" method="post">
+                <input type="hidden" name="Name" th:value="${dish.getName()}" />
+                <input type="submit" value="Edytuj" class="button-edit"/>
+            </form>
+            <form action="#" th:action="@{dish/delete}" th:object="${dish1}"  method="post">
+                <input type="hidden" name="Name" th:value="${dish.getName()}" />
+                <input type="submit" value="Usuń" class="button-remove"/>
+            </form>
+        </div>
+
+        </h4>
+
+        <p class="w3-text-grey">
+            <span th:text="${dish.getPrice()}"></span> zł <br>
+            <span th:text="${dish.getDescription()}"></span> <br>
+        </p>
+    </div>
+</div>
+</div>
+
+<form action="#" th:action="@{admin-orders}"  method="post">
+    <input type="submit" value="Zamówienia" class="button-edit"/>
+</form>
+
+</body>
+</html>

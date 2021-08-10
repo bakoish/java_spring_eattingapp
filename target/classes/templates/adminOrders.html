@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel admina</title>
+  <link th:href = "@{/css/home.css}" rel="stylesheet">
+  <!-- include jquery -->
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+  <script>
+    $(document).ready(function(){
+
+      $('#navbar').load("navbar");
+    });
+  </script>
+</head>
+
+<body class="body-common ">
+
+<!-- Navbar will be loaded here -->
+<div id="navbar"></div>
+
+<!-- Panel -->
+<div class="flex-center">
+
+  <div th:each="dish : ${zamowienia}">
+    <h4>
+
+      <span th:text="${dish.getNazwa()}">No item</span>
+
+      <span th:text="${dish.getUser()}">No item</span>
+
+    </h4>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel usera</title>
+    <link th:href = "@{/css/home.css}" rel="stylesheet">
+    <!-- include jquery -->
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            $('#navbar').load("navbar");
+
+        });
+    </script>
+
+    <script type="text/javascript">
+        function showHidden(obj){
+            obj = document.getElementById(obj);
+            obj.style.display == 'none' ? obj.style.display = '' : obj.style.display = 'none';
+        }
+    </script>
+</head>
+
+<body class="body-common">
+
+<!-- Navbar will be loaded here -->
+<div id="navbar"></div>
+
+<!-- Header -->
+<header class="w3-display-container w3-content w3-wide" style="max-width:1600px;min-width:500px" id="home">
+    <img class="w3-image" th:src="@{/img/hamburger.jpg}" alt="Hamburger Catering" width="1600" height="800">
+    <div class="w3-display-bottomleft w3-padding-large w3-opacity">
+        <h1 class="w3-xxlarge">Le Catering</h1>
+    </div>
+</header>
+
+<!-- Panel -->
+<div class="flex-center">
+    <p class="w3-text-grey"><h3>Witaj <span th:text="${#authentication.getPrincipal().getUsername()}"></span></h3></p>
+    <div class="data">
+        <a id="link1_1" href="javascript: showHidden('hidden1');showHidden('link1_1');showHidden('link1_2');">POKAZ SWOJE DANE</a>
+        <a id="link1_2" style="display:none;" href="javascript: showHidden('hidden1');showHidden('link1_1');showHidden('link1_2');">UKRYJ SWOJE DANE</a>
+        <div id="hidden1" style="display:none;">
+
+            <div th:each="pa : ${personaladress}">
+                <p><b>Imie:</b> <span th:text="${pa.getName()}"></span></p>
+                <p><b>Nazwisko:</b> <span th:text="${pa.getSurname()}"></span></p>
+                <p><b>Telefon:</b> <span th:text="${pa.getTelephone()}"></span></p>
+                <p><b>Kod pocztowy:</b> <span th:text="${pa.getPostcode()}"></span></p>
+                <p><b>Adres:</b> <span th:text="${pa.getAdress()}"></span></p>
+            </div>
+            <form action="#" th:action="@{personaladress/edit}" th:object="${personaladress}" method="post">
+                <p><input type="submit" value="Edytuj swoje dane" /></p>
+            </form>
+
+        </div>
+    </div>
+
+    <div class="alert alert-success" role="alert" th:text="${success}" th:if="${success}"></div>
+    <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
+
+
+</div>
+
+<div id="user-menu-order">
+
+    <div class="w3-padding-large" id="user-menu">
+        <h1>Zamów coś od nas:</h1>
+        <div th:each="dish : ${dishes}">
+            <h4>
+                <span th:text="${dish.getName()}">No item</span>
+                <form action="#" th:action="@{dodaj}" th:object="${dish2}" method="post">
+                    <input type="hidden" name="Name" th:value="${dish.getName()}" />
+                    <input type="submit" value="+" class="button-add"/>
+                </form>
+            </h4>
+            <p class="w3-text-grey">
+                Cena: <span th:text="${dish.getPrice()}"></span> zł <br>
+                <span th:text="${dish.getDescription()}"></span> <br>
+            </p>
+        </div>
+    </div>
+
+    <!-- Tutaj będzie wyświetlane aktualne zamówienie -->
+    <div class="w3-padding-large" id="user-order">
+        <h1>Twoje zamówienie:</h1>
+
+        <p class="w3-text-grey">
+        <h6 th:each="dish4: ${dishes1}">
+            <span th:text="${dish4.getName()}"></span> <br>
+            Cena: <span th:text="${dish4.getPrice()}"></span> zł <br>
+        </h6>
+        <h4>
+            Łączna cena:
+            <span th:text="${currentOrderTotalPrice}"></span>
+            zł
+        </h4>
+        </p>
+
+        <div class="two-buttons" >
+            <div>
+                <form action="#" th:action="@{zamow}" th:object="${personaladress}" method="post">
+                    <input type="submit" value="Dalej" id="user-order-button"/>
+                </form>
+            </div>
+
+            <div>
+                <form action="#" th:action="@{anuluj}" th:object="${personaladress}" method="post">
+                    <input type="submit" value="Anuluj" id="user-order-button"/>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<footer class="w3-center w3-light-grey w3-padding-32" style="margin-top: 0px;">
+    <p>Le Catering - Z miłości do jedzenia! Życzymy smacznego!</p>
+</footer>
+</body>
+</html>

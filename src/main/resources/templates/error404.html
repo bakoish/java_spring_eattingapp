@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Logowanie</title>
+    <link th:href = "@{/css/home.css}" rel="stylesheet">
+    <!-- include jquery -->
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            $('#navbar').load("navbar");
+
+        });
+    </script>
+</head>
+
+<body class="body-common">
+
+<!-- Navbar will be loaded here -->
+<div id="navbar"></div>
+
+<div class="flex-center error w3-large">
+
+    <p>Blad - 404 brak dostepu lub brak strony</p>
+</div>
+</body>
+</html>

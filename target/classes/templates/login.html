@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Logowanie</title>
+    <link th:href = "@{/css/home.css}" rel="stylesheet">
+    <!-- include jquery -->
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            $('#navbar').load("navbar");
+
+        });
+    </script>
+</head>
+
+<body class="body-common">
+
+<!-- Navbar will be loaded here -->
+<div id="navbar"></div>
+
+<div class="flex-center">
+
+    <div th:if="${param.error}" class="error">
+        Invalid username or password.
+    </div>
+    <div th:if="${param.logout}" class="message">
+        You have been logged out.
+    </div>
+
+    <h2 class="bigger-text">Zaloguj się:</h2>
+    <form th:action="@{/login}" method="post" id="login-form">
+        <div class="login-form-item"><label> User Name : </label> <input type="text" name="username"/> </div>
+        <div class="login-form-item"><label> Password: </label> <input type="password" name="password"/> </div>
+        <div class="login-form-item"><input type="submit" value="Sign In"/></div>
+    </form>
+</div>
+</body>
+</html>

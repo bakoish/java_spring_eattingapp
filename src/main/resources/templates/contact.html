@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+    <title>Kontakt</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link th:href = "@{/css/home.css}" rel="stylesheet">
+    <!-- include jquery -->
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            $('#navbar').load("navbar");
+
+        });
+    </script>
+</head>
+
+<body class="body-common">
+
+<!-- Navbar will be loaded here -->
+<div id="navbar"></div>
+
+<!-- Header -->
+<header class="w3-display-container w3-content w3-wide" style="max-width:1600px;min-width:500px" id="home">
+    <img class="w3-image" th:src="@{/img/hamburger.jpg}" alt="Hamburger Catering" width="1600" height="800">
+    <div class="w3-display-bottomleft w3-padding-large w3-opacity">
+        <h1 class="w3-xxlarge">Le Catering</h1>
+    </div>
+</header>
+
+    <!-- Page content -->
+    <div class="w3-content" style="max-width:1100px">
+
+    <!-- About Section -->
+    <div class="w3-row w3-padding-64" id="location">
+        <div class="w3-col m6 w3-padding-large w3-hide-small">
+            <img src="/img/location.jpg" class="w3-round w3-image w3-opacity-min" alt="Table Setting" width="1000" height="1050">
+        </div>
+
+        <div class="w3-col m6 w3-padding-large">
+            <h1 class="w3-center">Our location and open hours</h1><br>
+            <p class="w3-xlarge">Le Catering</p>
+            <p class="w3-large">ul. Przegon 61<br>30-209 Krakow</p>
+            <p class="w3-large">Mondays-Thursdays: 12:00-22:00<br>Fridays & Saturdays: 11:00-00:00<br>Sundays:      11:00-23:00</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Menu Section -->
+    <div class="w3-row w3-padding-64" id="contact">
+        <div class="w3-col m6 w3-padding-large">
+            <h1 class="w3-center">Contact</h1><br>
+            <p class="w3-xlarge">Tel: (+48) 666 021 370</p>
+            <p class="w3-xlarge">E-mail: lecatering@contact.com</p>
+            <p class="w3-large">Or visit us/send us a letter @ address given above!</p>
+        </div>
+
+
+        <div class="w3-col l6 w3-padding-large">
+            <img src="/img/restaurant.jpg" class="w3-round w3-image w3-opacity-min" alt="Menu" style="width:100%">
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- End page content -->
+</div>
+
+    <!-- Footer -->
+<footer class="w3-center w3-light-grey w3-padding-32">
+    <p>Le Catering - Z miłości do jedzenia! Życzymy smacznego!</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,5 @@
+com/eattingapp/EattingappApplication.class
+com/eattingapp/securingweb/WebSecurityConfig.class
+com/eattingapp/WebController.class
+com/eattingapp/Zamowienia.class
+com/eattingapp/securingweb/MvcConfig.class

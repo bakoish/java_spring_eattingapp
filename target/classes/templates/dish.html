@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Panel admina/edycja dania</title>
+    <link th:href = "@{/css/home.css}" rel="stylesheet">
+    <!-- include jquery -->
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            $('#navbar').load("navbar");
+        });
+    </script>
+</head>
+
+<body class="body-common" >
+
+<div class="flex-center">
+    <div class="w3-padding-large" id="dish">
+        <h1>Edytuj danie</h1>
+        <p><span th::text="${nazwa}"></span></p>
+        <form action="#" th:action="@{/update}" th:object="${dish}"method="post" id="dish-add">
+            <p>Name: <input type="text" th:field="*{Name}" /></p>
+            <p>Price: <input type="text" th:field="*{Price}" /></p>
+            <p>Description: <textarea type="text" th:field="*{Description}"></textarea></p>
+            <p class="error" th:errors="*{Price}"></p>
+            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+        </form>
+    </div>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+<!-- Navbar (sit on top) -->
+<div id="navbar">
+  <div class="w3-bar w3-white w3-padding w3-card" style="letter-spacing:4px;">
+    <a href="/" class="w3-bar-item w3-button">Restauracja XYZ</a>
+    <!-- Right-sided navbar links. Hide them on small screens -->
+    <div class="w3-right w3-hide-small">
+      <a href="/#about" class="w3-bar-item w3-button">About</a>
+      <a href="/#menu" class="w3-bar-item w3-button">Menu</a>
+      <a href="/contact" class="w3-bar-item w3-button">Contact</a>
+      <a sec:authorize="isAnonymous()" href="/login" class="w3-bar-item w3-button">Login</a>
+      <!-- /default - powinno przekierowywać do domyślnego panelu -->
+      <a sec:authorize="isAuthenticated()" href="/default" class="w3-bar-item w3-button" id="panel">Panel</a>
+      <a sec:authorize="isAuthenticated()" href="/logout" class="w3-bar-item w3-button">Logout</a>
+    </div>
+  </div>
+</div>
